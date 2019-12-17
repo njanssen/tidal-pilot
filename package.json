@@ -1,0 +1,16 @@
+{
+  "name": "tidal-pilot",
+  "version": "1.0.0",
+  "description": "Some OSC/UDP glue for using Hundred Rabbit's Pilot with TidalCycles",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tonaljs/midi": "^3.3.1",
+    "lodash": "^4.17.15",
+    "osc": "^2.3.1"
+  }
+}
