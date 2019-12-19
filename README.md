@@ -33,14 +33,14 @@ To play a note on channel 0:
 d1 $ s "0"
 ```
 
-To play a "C3" on channel 1:
+To play a "C3" on channel B:
 
 ```
-d1 $ s "1" # n "c3"
+d1 $ s "b" # n "c3"
 -- or 
-d1 $ s "1" # n "c" # octave 3
+d1 $ s "b" # n "c" # octave 3
 -- or 
-d1 $ s "1" # n "0" # octave 3
+d1 $ s "b" # n "0" # octave 3
 ```
 
 More examples can be found in the `tidal` folder of this repository.
