@@ -27,22 +27,33 @@ The app listens for TidalCycles OSC messages on UDP port 9000.
 
 Create or open a `.tidal` file in your editor with TidalCycles support (e.g. VSCode or Atom), and start live-coding patterns with Pilot. Make sure to use the `BootTidal.hs` in this repo, or add a `superDirtTarget` that uses port 9000 in your own boot file. 
 
-To play a note on channel 0: 
+Using `s`, `n` (or `midinote`), and `octave` to send Play commands to Pilot: 
 
 ```
-d1 $ s "0"
-```
+-- Play command: 05C (channel 0, note C5)
+d1 $ s "0" 
 
-To play a "C3" on channel B:
-
-```
+-- Play command: B3C (channel B, note C5)
 d1 $ s "b" # n "c3"
 -- or 
 d1 $ s "b" # n "c" # octave 3
 -- or 
 d1 $ s "b" # n "0" # octave 3
+
+-- Play command: 94e (channel 9, note E#4)
+d1 $ s "9" # n "es4"
 ```
 
-More examples can be found in the `tidal` folder of this repository.
+Use `velocity` parameter to control the velocity in your Play command:
 
-Effects are not supported by tidal-pilot yet, you can type these commands (e.g. `REV06` for some reverb) manually in the Pilot window.
+```
+-- Play command: 74e (channel 7, note E2, velocity 8)
+d1 $ s "7" # n "e2" # velocity 0.5
+
+-- Play command: 74e (channel 7, note E2, velocity F)
+d1 $ s "7" # n "e2" # velocity 1
+```
+
+And yes, you can pattern those parameters! For more examples, see the `tidal` folder of this repository.
+
+Effects are not supported by tidal-pilot yet, you can type these commands (e.g. `REV10` for some reverb) manually in the Pilot window.
