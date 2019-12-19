@@ -4,6 +4,7 @@
   "description": "Some OSC/UDP glue for using Hundred Rabbit's Pilot with TidalCycles",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
