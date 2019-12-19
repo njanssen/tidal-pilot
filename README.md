@@ -25,7 +25,7 @@ The app listens for TidalCycles OSC messages on UDP port 9000.
 
 ### Start live-coding
 
-Make sure to use the `BootTidal.hs` in this repo, or add a `superDirtTarget` that uses port 9000 in your own boot file.
+Create or open a `.tidal` file in your editor with TidalCycles support (e.g. VSCode or Atom), and start live-coding patterns with Pilot. Make sure to use the `BootTidal.hs` in this repo, or add a `superDirtTarget` that uses port 9000 in your own boot file. 
 
 To play a note on channel 0: 
 
