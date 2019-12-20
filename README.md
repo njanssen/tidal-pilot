@@ -60,7 +60,7 @@ And yes, you can pattern all those parameters! For more examples, see the `tidal
 
 #### Global Settings
 
-Use the `setcps` function and the parameter `cps` to control the global BPM setting in Pilot which is applied to effects such as feedback. As a default, tidal-pilot uses 4 beats per cycle (bpc) when calculating BPM (`bpm = cps/60/bpc`). Use the parameter `bpc` to set another value for beats per cycle in the BPM calculations performed by tidal-pilot:
+Use the `setcps` function and the parameter `cps` to control the global BPM setting in Pilot which is applied to effects such as feedback. As a default, tidal-pilot uses 4 beats per cycle (bpc) when calculating BPM (`bpm = cps * 60 * bpc`). Use the parameter `bpc` to set another value for beats per cycle in the BPM calculations performed by tidal-pilot:
 
 ```
 -- Global command: BPM120
