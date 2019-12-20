@@ -7,13 +7,13 @@ tidal.events.on('message', message => {
 	console.log('Tidal message', message)
 	let commands = []
 
-	// Tidal bpc (beats per cycle) used to calculate BPM setting
+	// Tidal bpc (beats per cycle) setting used to calculate BPM
 	if (typeof message.bpc !== 'undefined') { 
 		tidal.settings.bpc = message.bpc
 		console.log(`BPC setting: ${tidal.settings.bpc}`)
 	}
 
-	// Tidal cps (cycles per second) mapping to BPM setting
+	// Tidal cps (cycles per second) mapping to global BPM setting
 	if (!_.isEqual(message.cps,tidal.settings.cps)) { 
 		tidal.settings.cps = message.cps
 		console.log(`CPS setting: ${tidal.settings.cps}`)
