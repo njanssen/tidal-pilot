@@ -68,4 +68,8 @@ let setI = streamSetI tidal
     setB = streamSetB tidal
 :}
 
+:{
+let bpc = pI "bpc"
+:}
+
 :set prompt "tidal> "

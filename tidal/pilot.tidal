@@ -1,4 +1,4 @@
-setcps 1
+setcps 1.0
 
 d1 $ fast 2 $ every 4 (# octave 3) $ struct "~ ~ 1" $ s "6" # n "<c e>" # octave 4
 
