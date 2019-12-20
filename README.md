@@ -83,3 +83,8 @@ d1 $ s "a*2" # cps "0.75 0.5" # bpc 3
 #### Effects
 
 Effects are not supported by tidal-pilot yet, you can type these commands (e.g. `REV10` for some reverb) manually in the Pilot window.
+
+## Extras
+
+- See the [License](LICENSE.md) file for license rights and limitations (MIT).
+- Pull Requests are welcome!
