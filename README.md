@@ -46,7 +46,7 @@ d1 $ s "b" # n "0" # octave 3
 d1 $ s "e" # n "es4"
 ```
 
-Optionally use the parameter `velocity` (`0 .. 1`) to control the velocity in your Play command (`0 .. F`):
+Pilot uses a standard velocity of 50% (`0.5` in Tidal, or `8` in Pilot) when playing notes. Optionally, you can use the parameter `velocity` in your pattern to control the velocity of your Play command:
 
 ```
 -- Play command: 74G8 (channel 7, note G4, velocity 8)
