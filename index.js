@@ -1,29 +1,54 @@
 require('module-alias/register')
-const tidal = require('@lib/tidal')
+const Tidal = require('@vliegwerk/tidal')
+const tidal = new Tidal()
+
 const pilot = require('@lib/pilot')
 const _ = require('lodash')
 
-tidal.events.on('message', message => {
-	console.log('Tidal message', message)
+const settings = {
+	cps : undefined,
+	bpc : 2
+}
+
+tidal.on('ready', () => {
+	console.log('Listening to messages from TidalCycles')
+})
+
+tidal.on('message', message => {
+	// Derive octave number (octave) with a default of 5 (standard in Tidal/SuperCollider)
+	const octave = (typeof message.octave === 'undefined') ? 5 : message.octave
+
+	// Derive note number (n or note) with a default of 0 (middle C on octave 5)
+	const n = message.n || message.note || 0
+
+	// Derive MIDI note number using n and octave
+	// Notes assume middle C on octave 5 (TidalCycles/SuperCollider) instead of octave 4 (MIDI standard), so we add one octave
+	const midinote = n + (octave + 1) * 12
+
+	// Add derived data to the Tidal message
+	message.octave = octave
+	message.n = n
+	message.midinote = midinote
+	 
 	let commands = []
 
 	// Tidal bpc (beats per cycle) setting used to calculate BPM
 	if (typeof message.bpc !== 'undefined') { 
-		tidal.settings.bpc = message.bpc
-		console.log(`BPC setting: ${tidal.settings.bpc}`)
+		settings.bpc = message.bpc
+		console.log(`BPC setting: ${settings.bpc}`)
 	}
 
 	// Tidal cps (cycles per second) mapping to global BPM setting
-	if (!_.isEqual(message.cps,tidal.settings.cps)) { 
-		tidal.settings.cps = message.cps
-		console.log(`CPS setting: ${tidal.settings.cps}`)
-		const bpm = tidal.cpsToBpm()
+	if (!_.isEqual(message.cps,settings.cps)) { 
+		settings.cps = message.cps
+		console.log(`CPS setting: ${settings.cps}`)
+		const bpm = cpsToBpm()
 		const command = `BPM${bpm}`
 		commands.push(command)
 	}
 
 	// Tidal sound/note mapping to Play Command
-	if (message.s) {
+	if (typeof message.s !== 'undefined') {
 		const channel = message.s.toUpperCase()
 		const midinote = message.midinote		
 		const note = pilot.midiNoteToPilotNote(midinote)
@@ -40,3 +65,6 @@ tidal.events.on('message', message => {
 	pilot.sendCommand(strCommands)
 })
 
+const cpsToBpm = () => { 
+	return Math.round(settings.cps * 60 * settings.bpc)	
+}

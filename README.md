@@ -21,11 +21,11 @@ npm install
 npm start
 ```
 
-The app listens for TidalCycles OSC messages on UDP port 9000.
+To keep things simple, this app listens for OSC messages on port `57120` which is also the standard port used by TidalCycles to send OSC messages to SuperDirt/SuperCollider for producing sound.
 
 ### Start live-coding
 
-Create or open a `.tidal` file in your editor with TidalCycles support (e.g. VSCode or Atom), and start live-coding patterns with Pilot. Make sure to use the `BootTidal.hs` in this repo, or add a `superDirtTarget` that uses port 9000 in your own boot file. 
+Create or open a `.tidal` file in your editor with TidalCycles support (e.g. VSCode or Atom), and start live-coding patterns with Pilot. Make sure to use the `BootTidal.hs` in this repo, it contains the definition of an extra parameter (`bpc`).
 
 #### Play commands
 
@@ -86,5 +86,5 @@ Effects are not supported by tidal-pilot yet, you can type these commands (e.g. 
 
 ## Extras
 
-- See the [License](LICENSE.md) file for license rights and limitations (MIT).
+- See the [License](LICENSE) file for license rights and limitations (MIT).
 - Pull Requests are welcome!
