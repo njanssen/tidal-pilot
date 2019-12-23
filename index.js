@@ -1,8 +1,10 @@
-require('module-alias/register')
 const Tidal = require('@vliegwerk/tidal')
 const tidal = new Tidal()
 
-const pilot = require('@lib/pilot')
+const Pilot = require('@vliegwerk/pilot')
+const pilot = new Pilot()
+
+const midi = require('@tonaljs/midi')
 const _ = require('lodash')
 
 const settings = {
@@ -51,10 +53,10 @@ tidal.on('message', message => {
 	if (typeof message.s !== 'undefined') {
 		const channel = message.s.toUpperCase()
 		const midinote = message.midinote		
-		const note = pilot.midiNoteToPilotNote(midinote)
+		const note = midiNoteToPilotNote(midinote)
 		let vel = ''
 		if (typeof message.velocity !== 'undefined') {
-			vel = pilot.floatToPilotArg(parseFloat(message.velocity), 0, 1)	
+			vel = Pilot.scaleToArgs(parseFloat(message.velocity), 0, 1)	
 		}
 		const command = `${channel}${note}${vel}`
 		commands.push(command)
@@ -62,9 +64,24 @@ tidal.on('message', message => {
 
 	const strCommands = commands.join(';')
 	console.log('Pilot commands:', strCommands)
-	pilot.sendCommand(strCommands)
+	pilot.sendCmd(strCommands)
 })
 
 const cpsToBpm = () => { 
 	return Math.round(settings.cps * 60 * settings.bpc)	
+}
+
+const midiNoteToPilotNote = note => {
+	let notename = midi.midiToNoteName(note, { sharps: true })
+
+	notename = notename
+		.split('')
+		.reverse()
+		.join('')
+	if (notename.includes('#')) {
+		notename = notename.toLowerCase()
+		notename = notename.replace('#', '')
+	}
+
+	return notename
 }
