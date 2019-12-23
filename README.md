@@ -56,7 +56,7 @@ d1 $ s "7" # n "g4" # velocity 0.5
 d1 $ s "a" # n "c5" # velocity 1
 ```
 
-And yes, you can pattern all those parameters! For more examples, see the `tidal` folder of this repository.
+And yes, you can pattern all those parameters! For more examples, see the `examples` folder of this repository.
 
 #### Global Settings
 
@@ -86,5 +86,6 @@ Effects are not supported by tidal-pilot yet, you can type these commands (e.g. 
 
 ## Extras
 
+- This app uses the [@vliegwerk/node-tidal](https://www.npmjs.com/package/@vliegwerk/tidal) and [@vliegwerk/node-pilot](https://www.npmjs.com/package/@vliegwerk/pilot) npm packages for interfacing with TidalCycles and Pilot.
 - See the [License](LICENSE) file for license rights and limitations (MIT).
 - Pull Requests are welcome!
