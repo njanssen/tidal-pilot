@@ -1,13 +1,13 @@
 const Tidal = require('@vliegwerk/tidal')
-const tidal = new Tidal({
-	augmentMessage: true
-})
-
 const Pilot = require('@vliegwerk/pilot')
-const pilot = new Pilot()
-
 const midi = require('@tonaljs/midi')
 const _ = require('lodash')
+
+const tidal = new Tidal({
+	addMidiData: true
+})
+
+const pilot = new Pilot()
 
 const settings = {
 	cps: undefined,
